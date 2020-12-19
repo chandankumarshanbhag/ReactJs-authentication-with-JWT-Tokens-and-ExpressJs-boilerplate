@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken"
-import Config from "./../config"
+import Config from "../config"
 
 export function generateKey(data) {
-    return jwt.sign(data, Config.privateKey);
+    return jwt.sign(data, Config.privateKey,{ expiresIn: Config.expiresIn });
 }
 
-export function validateKey(data) {
-    return jwt.verify(data, Config.privateKey);
+export async function validateKey(data) {
+    return await jwt.verify(data, Config.privateKey);
 }
