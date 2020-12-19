@@ -14,10 +14,8 @@ export function AuthProvider({ children }) {
     }, []);
 
     async function checkLoogedIn() {
-        console.log("hello")
         setLoading(true);
         let key = Cookies.get("auth_key");
-        console.log("key", key)
         if (typeof key == "string" && key != "") {
             let { data } = await http.post("/authenticate", { key });
             if (data.ok == 0) {
